@@ -1,4 +1,4 @@
-require_relative "../app/weather_service"
+require_relative '../app/weather_service'
 
 describe WeatherService do
   # In the attached file (w_data.dat), you’ll find daily weather data.
@@ -6,43 +6,43 @@ describe WeatherService do
   # the day number (column one) with the smallest temperature spread
   # (the maximum temperature is the second column, the minimum is the third column).
 
-  describe '#smallest_temperature_spread' do
-    it "outputs the day number with the smallest temperature spread" do
-      output = WeatherService.smallest_temperature_spread(BASE_SAMPLE)
+  describe '#smallest_temperature_spread_day' do
+    it 'outputs the day number with the smallest temperature spread' do
+      output = WeatherService.smallest_temperature_spread_day(BASE_SAMPLE)
       expect(output).to eq(12)
     end
 
-    context "in case of draw" do
-      it "outputs the greatest day number" do
-        output = WeatherService.smallest_temperature_spread(DRAW_SAMPLE)
+    context 'in case of draw' do
+      it 'outputs the greatest day number' do
+        output = WeatherService.smallest_temperature_spread_day(DRAW_SAMPLE)
         expect(output).to eq(4)
       end
     end
 
-    context "when the line has an invalid number format" do
-      it "skips the line" do
-        output = WeatherService.smallest_temperature_spread(INVALID_NUMBER_SAMPLE)
+    context 'when the line has an invalid number format' do
+      it 'skips the line' do
+        output = WeatherService.smallest_temperature_spread_day(INVALID_NUMBER_SAMPLE)
         expect(output).to eq(1)
       end
     end
 
-    context "when the file is empty" do
-      it "outputs nil" do
-        output = WeatherService.smallest_temperature_spread("")
+    context 'when the file is empty' do
+      it 'outputs nil' do
+        output = WeatherService.smallest_temperature_spread_day('')
         expect(output).to eq(nil)
       end
     end
 
-    context "when there's no row with the expected format" do
-      it "outputs nil" do
-        output = WeatherService.smallest_temperature_spread(NO_RECORD_SAMPLE)
+    context 'when there is no row with the expected format' do
+      it 'outputs nil' do
+        output = WeatherService.smallest_temperature_spread_day(NO_RECORD_SAMPLE)
         expect(output).to eq(nil)
       end
     end
   end
 end
 
-BASE_SAMPLE = """
+BASE_SAMPLE = '''
 <pre>
  MMU June 2002
 
@@ -62,9 +62,9 @@ BASE_SAMPLE = """
   12  88    73    81          68.7       0.00 RTH     250  8.1 270  21  7.9  94 51 1007.0
   mo  82.9  81.5  71.7    16  58.8       0.00              6.9          5.3
 </pre>
-"""
+'''
 
-DRAW_SAMPLE = """
+DRAW_SAMPLE = '''
 <pre>
  MMU June 2002
 
@@ -76,9 +76,9 @@ DRAW_SAMPLE = """
    4  79    63    71          46.5       0.00         330  8.7 340  23  3.3  70 28 1004.5
   mo  82.9  81.5  71.7    16  58.8       0.00              6.9          5.3
 </pre>
-"""
+'''
 
-INVALID_NUMBER_SAMPLE = """
+INVALID_NUMBER_SAMPLE = '''
 <pre>
  MMU June 2002
 
@@ -90,9 +90,9 @@ INVALID_NUMBER_SAMPLE = """
    4  79    DE    71          46.5       0.00         330  8.7 340  23  3.3  70 28 1004.5
   mo  82.9  81.5  71.7    16  58.8       0.00              6.9          5.3
 </pre>
-"""
+'''
 
-NO_RECORD_SAMPLE = """
+NO_RECORD_SAMPLE = '''
 <pre>
  MMU June 2002
 
@@ -100,4 +100,4 @@ NO_RECORD_SAMPLE = """
 
   mo  82.9  81.5  71.7    16  58.8       0.00              6.9          5.3
 </pre>
-"""
+'''
