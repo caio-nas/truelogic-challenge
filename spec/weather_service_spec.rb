@@ -8,41 +8,41 @@ describe WeatherService do
 
   describe '#smallest_temperature_spread_day' do
     it 'outputs the day number with the smallest temperature spread' do
-      output = WeatherService.smallest_temperature_spread_day(BASE_SAMPLE)
+      output = described_class.smallest_temperature_spread_day(WEATHER_BASE_SAMPLE)
       expect(output).to eq(12)
     end
 
     context 'in case of draw' do
       it 'outputs the greatest day number' do
-        output = WeatherService.smallest_temperature_spread_day(DRAW_SAMPLE)
-        expect(output).to eq(4)
+        output = described_class.smallest_temperature_spread_day(WEATHER_DRAW_SAMPLE)
+        expect(output).to eq(3)
       end
     end
 
     context 'when the line has an invalid number format' do
       it 'skips the line' do
-        output = WeatherService.smallest_temperature_spread_day(INVALID_NUMBER_SAMPLE)
+        output = described_class.smallest_temperature_spread_day(WEATHER_INVALID_NUMBER_SAMPLE)
         expect(output).to eq(1)
       end
     end
 
     context 'when the file is empty' do
       it 'outputs nil' do
-        output = WeatherService.smallest_temperature_spread_day('')
+        output = described_class.smallest_temperature_spread_day('')
         expect(output).to eq(nil)
       end
     end
 
     context 'when there is no row with the expected format' do
       it 'outputs nil' do
-        output = WeatherService.smallest_temperature_spread_day(NO_RECORD_SAMPLE)
+        output = described_class.smallest_temperature_spread_day(WEATHER_NO_RECORD_SAMPLE)
         expect(output).to eq(nil)
       end
     end
   end
 end
 
-BASE_SAMPLE = '''
+WEATHER_BASE_SAMPLE = '''
 <pre>
  MMU June 2002
 
@@ -64,7 +64,7 @@ BASE_SAMPLE = '''
 </pre>
 '''
 
-DRAW_SAMPLE = '''
+WEATHER_DRAW_SAMPLE = '''
 <pre>
  MMU June 2002
 
@@ -72,13 +72,13 @@ DRAW_SAMPLE = '''
 
    1  88    59    74          53.8       0.00 F       280  9.6 270  17  1.6  93 23 1004.5
    2  79    63    71          46.5       0.00         330  8.7 340  23  3.3  70 28 1004.5
-   3  77    55    66          39.6       0.00         350  5.0 350   9  2.8  59 24 1016.8
-   4  79    63    71          46.5       0.00         330  8.7 340  23  3.3  70 28 1004.5
+   3  79    63    71          46.5       0.00         330  8.7 340  23  3.3  70 28 1004.5
+   4  77    55    66          39.6       0.00         350  5.0 350   9  2.8  59 24 1016.8
   mo  82.9  81.5  71.7    16  58.8       0.00              6.9          5.3
 </pre>
 '''
 
-INVALID_NUMBER_SAMPLE = '''
+WEATHER_INVALID_NUMBER_SAMPLE = '''
 <pre>
  MMU June 2002
 
@@ -92,7 +92,7 @@ INVALID_NUMBER_SAMPLE = '''
 </pre>
 '''
 
-NO_RECORD_SAMPLE = '''
+WEATHER_NO_RECORD_SAMPLE = '''
 <pre>
  MMU June 2002
 

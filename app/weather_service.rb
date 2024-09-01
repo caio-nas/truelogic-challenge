@@ -25,6 +25,8 @@ class WeatherService
         smallest_spread = current_spread
         selected_day = current_day
       end
+
+      selected_day
     end
   end
 
