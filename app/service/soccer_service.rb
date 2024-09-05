@@ -6,11 +6,11 @@ class SoccerService
   RECORD_ROW_SIZE = 59
 
   ### Time complexity O(n)
-  def self.smallest_absolute_goal_difference(text_input)
+  def self.smallest_absolute_goal_difference(enumerable)
     smallest_goal_difference = BigDecimal::INFINITY
     extract_number = ->(str) { str.delete('^0-9.') }
 
-    text_input.each_line.reduce(nil) do |selected_team, row|
+    enumerable.reduce(nil) do |selected_team, row|
       next selected_team if row.size != RECORD_ROW_SIZE
 
       cols = row.tr_s(' ', ' ').split

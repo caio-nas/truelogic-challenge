@@ -1,4 +1,4 @@
-require_relative '../app/soccer_service'
+require_relative '../app/service/soccer_service'
 
 describe SoccerService do
   # The attached soccer.dat file contains the results from the English Premier League.
@@ -6,36 +6,44 @@ describe SoccerService do
   # (for example, Arsenal scored 79 goals and had 36 goals scored against them).
   # Write a program to print the name of the team with the smallest difference between goals ‘for’ and ‘against’.
 
+  let(:input) { subject.each_line }
+  let(:output) { described_class.smallest_absolute_goal_difference(input) }
+
   describe '#smallest_absolute_goal_difference' do
+    subject { SOCCER_BASE_SAMPLE }
+
     it 'outputs the team with the smallest difference between goals for and against' do
-      output = described_class.smallest_absolute_goal_difference(SOCCER_BASE_SAMPLE)
       expect(output).to eq("Aston_Villa")
     end
 
     context 'in case of draw' do
+      subject { SOCCER_DRAW_SAMPLE }
+
       it 'outputs the better ranked team' do
-        output = described_class.smallest_absolute_goal_difference(SOCCER_DRAW_SAMPLE)
         expect(output).to eq("Liverpool")
       end
     end
 
     context 'when the line has an invalid number format' do
+      subject { SOCCER_INVALID_NUMBER_SAMPLE }
+
       it 'skips the line' do
-        output = described_class.smallest_absolute_goal_difference(SOCCER_INVALID_NUMBER_SAMPLE)
         expect(output).to eq("Tottenham")
       end
     end
 
     context 'when the file is empty' do
+      subject { '' }
+
       it 'outputs nil' do
-        output = described_class.smallest_absolute_goal_difference('')
         expect(output).to eq(nil)
       end
     end
 
     context 'when there is no row with the expected format' do
+      subject { SOCCER_NO_RECORD_SAMPLE }
+
       it 'outputs nil' do
-        output = described_class.smallest_absolute_goal_difference(SOCCER_NO_RECORD_SAMPLE)
         expect(output).to eq(nil)
       end
     end

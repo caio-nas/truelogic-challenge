@@ -5,11 +5,11 @@ class WeatherService
   RECORD_ROW_SIZE = 90
 
   ### REDUCE VERSION - Time complexity O(n)
-  def self.smallest_temperature_spread_day(text_input)
+  def self.smallest_temperature_spread_day(enumerable)
     smallest_spread = BigDecimal::INFINITY
     extract_number = ->(str) { str.delete('^0-9.') }
 
-    text_input.each_line.reduce(nil) do |selected_day, row|
+    enumerable.reduce(nil) do |selected_day, row|
       next selected_day if row.size != RECORD_ROW_SIZE
 
       cols = row.tr_s(' ', ' ').split

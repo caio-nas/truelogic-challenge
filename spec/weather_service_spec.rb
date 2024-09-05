@@ -1,4 +1,4 @@
-require_relative '../app/weather_service'
+require_relative '../app/service/weather_service'
 
 describe WeatherService do
   # In the attached file (w_data.dat), you’ll find daily weather data.
@@ -6,36 +6,44 @@ describe WeatherService do
   # the day number (column one) with the smallest temperature spread
   # (the maximum temperature is the second column, the minimum is the third column).
 
+  let(:input) { subject.each_line }
+  let(:output) { described_class.smallest_temperature_spread_day(input) }
+
   describe '#smallest_temperature_spread_day' do
+    subject { WEATHER_BASE_SAMPLE }
+
     it 'outputs the day number with the smallest temperature spread' do
-      output = described_class.smallest_temperature_spread_day(WEATHER_BASE_SAMPLE)
       expect(output).to eq(12)
     end
 
     context 'in case of draw' do
+      subject { WEATHER_DRAW_SAMPLE }
+
       it 'outputs the greatest day number' do
-        output = described_class.smallest_temperature_spread_day(WEATHER_DRAW_SAMPLE)
         expect(output).to eq(3)
       end
     end
 
     context 'when the line has an invalid number format' do
+      subject { WEATHER_INVALID_NUMBER_SAMPLE }
+
       it 'skips the line' do
-        output = described_class.smallest_temperature_spread_day(WEATHER_INVALID_NUMBER_SAMPLE)
         expect(output).to eq(1)
       end
     end
 
     context 'when the file is empty' do
+      subject { '' }
+
       it 'outputs nil' do
-        output = described_class.smallest_temperature_spread_day('')
         expect(output).to eq(nil)
       end
     end
 
     context 'when there is no row with the expected format' do
+      subject { WEATHER_NO_RECORD_SAMPLE }
+
       it 'outputs nil' do
-        output = described_class.smallest_temperature_spread_day(WEATHER_NO_RECORD_SAMPLE)
         expect(output).to eq(nil)
       end
     end
