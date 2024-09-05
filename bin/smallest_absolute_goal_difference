@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rake smallest_absolute_goal_difference["$@"]

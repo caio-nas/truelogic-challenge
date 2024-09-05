@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rake smallest_temperature_spread_day["$@"]

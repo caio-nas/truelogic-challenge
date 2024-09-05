@@ -1,4 +1,4 @@
-require_relative '../app/service/soccer_service'
+require_relative '../../app/service/soccer_service'
 
 describe SoccerService do
   # The attached soccer.dat file contains the results from the English Premier League.

@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    colorize (1.1.0)
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
@@ -12,6 +11,7 @@ GEM
       reline (>= 0.4.2)
     psych (5.1.2)
       stringio
+    rake (13.2.1)
     rdoc (6.7.0)
       psych (>= 4.0.0)
     reline (0.5.9)
@@ -35,8 +35,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  colorize
   debug
+  rake
   rspec
 
 RUBY VERSION

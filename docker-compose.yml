@@ -3,7 +3,6 @@ version: '2'
 services:
   app:
     build: .
-    entrypoint: /bin/bash
     stdin_open: true
     tty: true
     volumes:
